@@ -1,0 +1,142 @@
+<!-- air_quality.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokeFinder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .pokeball {
+            height: 70px;
+            width: 115px;
+            display: inline-block;
+            margin: 0 auto -12.5px;
+            padding-left: 45px;
+        }
+
+        .pokename {
+            display: inline-block;
+            margin-left: -25px;
+        }
+
+        .info {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 0;
+            animation: typing;
+            animation-duration: 1.5s;
+            animation-timing-function: steps(30, end);
+            animation-fill-mode: forwards;
+        }
+
+        .formbtn {
+            padding-left: 50px;
+            padding-bottom: 20px;
+        }
+
+        body {
+            background-image: url("https://i.pinimg.com/originals/1c/a6/e1/1ca6e1c35e2d884230242cc0326dbf28.jpg");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-color: #7dad71;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: lightgray;
+        }
+
+        .container {
+            background-color: #212121;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            align-content: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        p {
+            margin-bottom: 10px;
+            align-content: center;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto 20px;
+            max-width: 100%;
+        }
+        .custom-button {
+            background-color: red;
+            border: none;
+            border-radius: 4px;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .custom-button:hover {
+            background-color: darkred;
+        }
+
+        @keyframes typing {
+          from { width: 0 }
+          to { width: 100% }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PokeInfo</h1>
+        <img class="pokeball" src="https://art.ngfiles.com/images/386000/386577_stardoge_8-bit-pokeball.png?f1446737358">
+        <h2 class="pokename">{{ data['name'] }}</h2>
+        <img src="{{ data['type'] }}">
+        <br>
+        <br>
+        <h6 class="info" style="padding-bottom: 20px; text-align: center;">{{ data['pokeEra'] }}</h6>
+        <img src="{{ data['era'] }}" class="HideImg" onload="hideImg()" onerror="this.src='https://github.com/Jesse-Hough/My-Pictures/blob/main/Screenshot%202023-07-17%20at%201.48.08%20PM.png?raw=true';">
+        <script>
+        function hideImg() {
+            if (`{{ data['era'] }}` === null)
+                document.getElementById("HideImg")
+                          .style.display = "none";
+            else
+                document.getElementById("HideImg")
+                          .style.display = "block";
+       }
+        </script>
+        <div class="formbtn">
+        <div class="info">
+        <p><b>{{ data['name'] }}'s Stat(s):</b></p>
+        <p>{{ stat }}</p>
+        <p>{{ data['stat'] }}</p>
+        <p>{{ data['hp1'] }} {{ data['hp2'] }}</p>
+        <p>{{ data['att1'] }} {{ data['att2'] }}</p>
+        <p>{{ data['def1'] }} {{ data['def2'] }}</p>
+        <p>{{ data['specA1'] }} {{ data['specA2'] }}</p>
+        <p>{{ data['specD1'] }} {{ data['specD2'] }}</p>
+        <p>{{ data['speed1'] }} {{ data['speed2'] }}</p>
+        <p>{{ data['height1'] }} {{ data['height2'] }}</p>
+        <p>{{ data['weight1'] }} {{ data['weight2'] }}</p>
+        <br><br>
+        </div>
+        <a href="{{ url_for('index') }}" class="custom-button">Return</a>
+        </div>
+</body>
+</html>

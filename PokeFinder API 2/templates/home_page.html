@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokeFinder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        body {
+            background-image: url("https://i.pinimg.com/originals/1c/a6/e1/1ca6e1c35e2d884230242cc0326dbf28.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            color: lightgray;
+        }
+
+        .container {
+            background-color: #212121;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+        }
+        input[type="text"], select {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            padding: 8px;
+            width: 100%;
+        }
+
+        h1, h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto 20px;
+            max-width: 100%;
+        }
+
+        ul, menu, dir {
+            list-style-type: none;
+        }
+
+        input[type="submit"] {
+            background-color: red;
+            border: none;
+            border-radius: 4px;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: darkred;
+        }
+
+        .tooltip {
+          position: relative;
+          display: inline-block;
+          border-bottom: 1px dotted black;
+        }
+
+        .tooltip .tooltiptext {
+          visibility: hidden;
+          width: 300px;
+          background-color: #ffffff;
+          color: #000000;
+          text-align: center;
+          border: solid #000000 2px;
+          border-radius: 6px;
+          padding: 5px 0;
+
+          /* Position the tooltip */
+          position: absolute;
+          z-index: 1;
+        }
+
+        .tooltip:hover .tooltiptext {
+          visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form method="POST" action="">
+            <h1>PokeFinder</h1>
+            <p class="subtitle"><b>Enter/Choose Pokemon's Info Below</b></p>
+            {{ form.csrf_token }}
+            <br>
+            <br>
+            <p>{{ form.PokemonName.label }}</p>
+            {{ form.PokemonName(class="form-input") }}
+            <br>
+            <br>
+            <p>{{ form.PokemonType.label }}</p>
+            {{ form.PokemonType(class="form-input") }}
+            <br>
+            <br>
+            <p>{{ form.PokeEra.label }}</p>
+            {{ form.PokeEra(class="form-input") }}
+            <br>
+            <br>
+            <div class="tooltip">Cant Find A Shiny Sprite? Hover Me!
+            <span class="tooltiptext">Remember that shiny pokemon were introduced in generation 2 starting in Pokemon Gold, Silver, and Crystal</span>
+            </div>
+            <br>
+            <br>
+            <p>{{ form.PokemonStats.label }}</p>
+            {{ form.PokemonStats(class="form-input") }}
+            <p>{{ form.submit(class="form-submit") }}</p>
+        </form>
+    </div>
+</body>
+</html>
